@@ -23,7 +23,6 @@ type EventBody struct {
 }
 
 func (c Api) AddEvent(user int, eventBody EventBody) revel.Result {
-	// Probably a bit questionable to use the model as body...
 	fmt.Printf("*** AddEvent here %d, %+v\n", user, eventBody)
 	event.AddEvent(event.NewEvent(user, eventBody.Typ, eventBody.Name, eventBody.Energy))
 	return c.RenderJSON(1)
