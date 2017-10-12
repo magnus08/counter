@@ -13,12 +13,12 @@ type Event struct {
 }
 
 var events = []Event{
-	NewEvent("aa", 1, "AA name", 100),
-	NewEvent("ab", 1, "AB name", 99),
-	NewEvent("ac", 2, "AC name", 98),
-	NewEvent("b", 1, "B name", 200) }
+	NewEvent(1, "aa", "AA name", 100),
+	NewEvent(1, "ab", "AB name", 99),
+	NewEvent(2, "ac", "AC name", 98),
+	NewEvent(1, "b", "B name", 200) }
 
-	func NewEvent(typ string, user int, name string, energy int) Event {
+	func NewEvent(user int, typ string, name string, energy int) Event {
 		return Event{typ, user, int(time.Now().Unix()), name, energy}
 	}
 

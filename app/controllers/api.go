@@ -11,15 +11,20 @@ type Api struct {
 }
 
 func (c Api) ListEvents(user int) revel.Result {
-	fmt.Printf("What!\n")
+	fmt.Printf("*** ListEvents here\n")
 
 	return c.RenderJSON(event.ListEvents(user))
 }
 
-func (c Api) AddEvent() revel.Result {
-  fmt.Printf("What?")
-  var jsonData map[string]interface{}
-	c.Params.BindJSON(&jsonData)
-	event.AddEvent(event.NewEvent("aa", 1, "AA name", 100))
+type EventBody struct {
+	Typ      string
+	Name      string
+	Energy      int
+}
+
+func (c Api) AddEvent(user int, eventBody EventBody) revel.Result {
+	// Probably a bit questionable to use the model as body...
+	fmt.Printf("*** AddEvent here %d, %+v\n", user, eventBody)
+	event.AddEvent(event.NewEvent(user, eventBody.Typ, eventBody.Name, eventBody.Energy))
 	return c.RenderJSON(1)
 }
